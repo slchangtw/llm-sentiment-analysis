@@ -1,0 +1,7 @@
+models:
+  - name: qwen/qwen3.6-plus:free
+    provider: openrouter
+    model_params:
+      temperature: 0.0
+      max_tokens: 1000
+      top_p: 1.0
