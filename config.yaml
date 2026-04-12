@@ -1,5 +1,26 @@
 models:
-  - name: qwen/qwen3.6-plus:free
+  - name: minimax/minimax-m2.5:free
+    provider: openrouter
+    model_params:
+      temperature: 0.0
+      max_tokens: 1000
+      top_p: 1.0
+      extra_body:
+        reasoning:
+          effort: low
+  - name: google/gemma-3-27b-it:free
+    provider: openrouter
+    model_params:
+      temperature: 0.0
+      max_tokens: 1000
+      top_p: 1.0
+  - name: meta-llama/llama-3.3-70b-instruct:free
+    provider: openrouter
+    model_params:
+      temperature: 0.0
+      max_tokens: 1000
+      top_p: 1.0
+  - name: qwen/qwen3-next-80b-a3b-instruct:free
     provider: openrouter
     model_params:
       temperature: 0.0
