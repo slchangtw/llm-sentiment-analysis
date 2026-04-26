@@ -1,9 +1,13 @@
-import os
 import re
 
 from dotenv import load_dotenv
 from openai import OpenAI, RateLimitError
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
 
 from src.config.model import ModelConfig
 from src.config.response import SentimentResponse
@@ -28,7 +32,7 @@ class SentimentEvaluator:
         self.model_params = config.model_params
         self.client = OpenAI(
             base_url=config.base_url,
-            api_key=os.environ["OPENROUTER_API_KEY"],
+            api_key=config.api_key,
         )
 
     @retry(
