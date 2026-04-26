@@ -22,3 +22,7 @@ def load_reviews(path: Path, n_per_class: int = 1000, seed: int = 42) -> pd.Data
 
 def metadata_for_row(row: pd.Series) -> dict[str, Any]:
     return {"length": len(str(row["review"]))}
+
+
+def get_dataset(name: str):
+    return langfuse.get_dataset(name)

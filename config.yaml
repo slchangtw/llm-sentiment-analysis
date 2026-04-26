@@ -1,4 +1,16 @@
+default_model: llama3.2:3b
+
 models:
+  - name: mistral-nemo:12b
+    provider: ollama
+    model_params:
+      temperature: 0.0
+      max_tokens: 80
+  - name: llama3.2:3b
+    provider: ollama
+    model_params:
+      temperature: 0.0
+      max_tokens: 80
   - name: minimax/minimax-m2.5:free
     provider: openrouter
     model_params:
