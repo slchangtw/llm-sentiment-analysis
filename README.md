@@ -24,19 +24,30 @@ uv sync
 cp .env.example .env
 ```
 
-`.env` variables:
+`.env` variables (copy from [`.env.example`](.env.example) and fill in):
 
 | Variable | Description |
 |---|---|
-| `LANGFUSE_PUBLIC_KEY` | Langfuse project public key |
 | `LANGFUSE_SECRET_KEY` | Langfuse project secret key |
-| `LANGFUSE_BASE_URL` | Langfuse base URL (e.g. `http://localhost:3000`) |
-| `OPENROUTER_API_KEY` | OpenRouter API key |
+| `LANGFUSE_PUBLIC_KEY` | Langfuse project public key |
+| `LANGFUSE_BASE_URL` | Langfuse API base URL (e.g. `http://localhost:3000` for local Docker) |
+| `LANGFUSE_TRACING_ENVIRONMENT` | Langfuse tracing environment tag (e.g. `dev`, `staging`; see [Langfuse environments](https://langfuse.com/docs/observability/features/environments)) |
+| `LANGFUSE_USER_ID` | User id attached to experiment traces in Langfuse |
+| `OPENROUTER_API_KEY` | OpenRouter API key for the LLM |
+| `PROMPT_NAME` | Langfuse prompt name used for evaluation (must exist or be synced in the project) |
+
+**Make commands:** run `make help` to list targets and usage (from the [`Makefile`](Makefile)).
 
 **Upload the dataset** (samples 1000 positive + 1000 negative, seed 42 by default):
 
 ```bash
-uv run python -m src.create_dataset <dataset_name>
+make create_dataset DATASET=<dataset_name>
+```
+
+**Run the experiment** (Langfuse reachable, `.env` set, dataset uploaded, prompt `PROMPT_NAME` present in Langfuse):
+
+```bash
+make run_experiment DATASET=<dataset_name>
 ```
 
 ---

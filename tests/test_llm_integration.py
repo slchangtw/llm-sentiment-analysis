@@ -2,9 +2,11 @@
 
 import pytest
 
-from src.config.model import load_model_configs
+from src.config.model import load_default_model_config
 from src.config.response import SentimentResponse
 from src.llm import SentimentEvaluator
+
+pytestmark = pytest.mark.integration
 
 POSITIVE_REVIEW = "This movie was absolutely fantastic. The acting was superb and I loved every minute of it."
 NEGATIVE_REVIEW = "Terrible film. Boring plot, bad acting, and a complete waste of time."
@@ -12,8 +14,7 @@ NEGATIVE_REVIEW = "Terrible film. Boring plot, bad acting, and a complete waste 
 
 @pytest.fixture(scope="module")
 def evaluator() -> SentimentEvaluator:
-    config = load_model_configs()[0]
-    return SentimentEvaluator(config)
+    return SentimentEvaluator(load_default_model_config())
 
 
 def test_positive_review_sentiment(evaluator: SentimentEvaluator) -> None:
